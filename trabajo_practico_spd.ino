@@ -49,7 +49,7 @@ void setup()
   do
   {
     Serial.println("Connect to WiFi....");
-    sendToWifi(wifiString(SSID_WIFI, PASSWORD), RESPONSE_TIME, false); /**< Se conecta a WiFi */
+    sendToWifi(wifiString(SSID_WIFI, PASSWORD), RESPONSE_TIME, DEBUG); /**< Se conecta a WiFi */
     delay(DELAY_COMMAND);
     //sendToWifi("AT+CIPSTATUS", RESPONSE_TIME, DEBUG); /**< WiFi Status */
     //sendToWifi("AT+CIFSR", RESPONSE_TIME, DEBUG); /**< WiFi info */
@@ -73,7 +73,10 @@ void loop()
   }  
 
   if(gasSensor>GAS_SENSE)
+  {
     digitalWrite(BUZZER, LOW); /**< Salida en 0 para hacer sonar el Buzzer MH-FMD */
+    sendMail("Z2FzdG9ucGVzb2FAaG90bWFpbC5jb20=","eGVPWThzQWpncmFq", 2000, DEBUG);
+  }    
   else
     digitalWrite(BUZZER, HIGH); /**< Salida en 1 para hacer sonar el Buzzer MH-FMD */
 

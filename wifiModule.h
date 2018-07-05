@@ -88,4 +88,30 @@ boolean checkIP(const int timeout)
   return GET_IP;
 }
 
+void sendMail(String user, String password, const int timeout, boolean debug)
+{
+  sendToWifi("AT+CIPSTART=4,\"TCP\",\"mail.smtp2go.com\",2525", timeout, debug);
+  sendToWifi("AT+CIPSEND=4,20", timeout, debug);
+  sendToWifi("ELHO 192.168.1.123", timeout, debug);
+  sendToWifi("AT+CIPSEND=4,12", timeout, debug);
+  sendToWifi("AUTH LOGIN", timeout, debug);
+  sendToWifi("AT+CIPSEND=4,30", timeout, debug);
+  sendToWifi(user, timeout, debug);
+  sendToWifi("AT+CIPSEND=4,18", timeout, debug);
+  sendToWifi(password, timeout, debug);
+  sendToWifi("AT+CIPSEND=4,34", timeout, debug);
+  sendToWifi("MAIL FROM:<gastonpesoa@hotmail.com>", timeout, debug);
+  sendToWifi("AT+CIPSEND=4,32", timeout, debug);
+  sendToWifi("RCPT To:<gastonpesoa@hotmail.com>", timeout, debug);
+  sendToWifi("AT+CIPSEND=4,6", timeout, debug);
+  sendToWifi("DATA", timeout, debug);
+  sendToWifi("AT+CIPSEND=4,24", timeout, debug);
+  sendToWifi("Perdida de Gas", timeout, debug);
+  sendToWifi("AT+CIPSEND=4,3", timeout, debug);
+  sendToWifi(".", timeout, debug);
+  sendToWifi("AT+CIPSEND=4,6", timeout, debug);
+  sendToWifi("QUIT", timeout, debug);
+  
+}
+
 #endif
